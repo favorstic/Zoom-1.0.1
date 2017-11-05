@@ -1,4 +1,7 @@
 #!/bin/bash
+#bootstrap
+
+
 
 Operating System = CentOS 7 minimal server
 
@@ -7,7 +10,7 @@ yum install gd gd-devel gcc glibc glibc-common wget git nagiois-plugins -y
 
 
 
-useradd -m zoom 
+useradd -m zoom
 useradd -m nagios
 echo "welcome" | passwd --stdin nagios
 echo "welcome" | passwd --stdin zoom
@@ -20,7 +23,7 @@ usermod -a -G nagcmd apache
 
 #download zoom tar file
 
-git clone 
+git clone
 
 
 cd zoom-1.0.1
@@ -64,5 +67,3 @@ make install
 
 chkconfig --add nagios
 chkconfig nagios on
-
-

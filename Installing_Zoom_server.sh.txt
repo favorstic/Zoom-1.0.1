@@ -23,7 +23,7 @@ usermod -a -G nagcmd apache
 
 #download zoom tar file
 
-git clone
+git clone https://github.com/favorstic/Zoom-1.0.1
 
 
 cd zoom-1.0.1

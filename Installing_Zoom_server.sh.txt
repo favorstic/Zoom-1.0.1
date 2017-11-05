@@ -1,0 +1,68 @@
+#!/bin/bash
+
+Operating System = CentOS 7 minimal server
+
+
+yum install gd gd-devel gcc glibc glibc-common wget git nagiois-plugins -y
+
+
+
+useradd -m zoom 
+useradd -m nagios
+echo "welcome" | passwd --stdin nagios
+echo "welcome" | passwd --stdin zoom
+
+
+groupadd nagcmd
+usermod -a -G nagcmd nagios
+usermod -a -G nagcmd apache
+
+
+#download zoom tar file
+
+git clone 
+
+
+cd zoom-1.0.1
+
+
+
+
+
+./configure --with-command-group=nagcmd
+make all
+make install
+make install-init
+make install-config
+make install-commandmode
+make install-webconf
+
+##input passwd
+echo "Enter zoomadmin pa"
+htpasswd -c /usr/local/nagios/etc/htpasswd.users zoomadmin
+
+
+
+
+systemctl restart httpd
+
+#////////////////////
+
+
+cd ~
+wget http://nagios-plugins.org/download/nagios-plugins-2.0.3.tar.gz
+tar xzf nagios-plugins-2.0.3.tar.gz
+
+cd nagios-plugins-2.0.3
+./configure --with-nagios-user=nagios --with-nagios-group=nagios
+
+make
+make install
+
+
+
+
+chkconfig --add nagios
+chkconfig nagios on
+
+
